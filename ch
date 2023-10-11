@@ -20,46 +20,27 @@ read_input() {
 
 # Display commit type options
 echo "Select a commit type:"
-echo "1. feat — A new feature"
-echo "2. fix — A bug fix"
-echo "3. chore — Build process or auxiliary tool changes"
-echo "4. docs — Documentation only changes"
-echo "5. refactor — A code change that neither fixes a bug nor adds a feature"
-echo "6. style — Markup, white-space, formatting, missing semi-colons..."
-echo "7. ci — CI related changes"
-echo "8. perf — A code change that improves performance"
-echo "9. test — Adding missing tests"
+echo "1. NEW — A new feature"
+echo "2. BUG FIX — A bug fix"
+echo "3. WORKAROUND — A workaround solution"
+echo "4. UPDATE — A adjustment but not affect the original code"
+
 
 # Read user choice
 read -p "Enter the number corresponding to your commit type: " choice
 
 case "$choice" in
   1)
-    commit_type="feat"
+    commit_type="NEW"
     ;;
   2)
-    commit_type="fix"
+    commit_type="BUG FIX"
     ;;
   3)
-    commit_type="chore"
+    commit_type="WORKAROUND"
     ;;
   4)
-    commit_type="docs"
-    ;;
-  5)
-    commit_type="refactor"
-    ;;
-  6)
-    commit_type="style"
-    ;;
-  7)
-    commit_type="ci"
-    ;;
-  8)
-    commit_type="perf"
-    ;;
-  9)
-    commit_type="test"
+    commit_type="UPDATE"
     ;;
   *)
     echo "Invalid choice. Exiting."
@@ -71,9 +52,9 @@ esac
 echo "Enter the project name:"
 project=$(read_input "" 50)
 
-# Ask the user to enter the field
-echo "Enter the field:"
-field=$(read_input "" 50)
+# Ask the user to enter the module
+echo "Enter the module:"
+module=$(read_input "" 50)
 
 # Ask the user to enter the main_message
 echo "Enter the main message:"
@@ -92,7 +73,7 @@ echo "Enter TEST:"
 test=$(read_input "" 200)
 
 # Generate the Git commit message
-commit_message="[$commit_type] $project: $field: $main_message
+commit_message="[$commit_type] $project: $module: $main_message
 
 [DESCRIPTION]
 $description
