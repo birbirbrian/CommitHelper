@@ -67,41 +67,20 @@ case "$choice" in
     ;;
 esac
 
-# Ask the user to enter the project name
-echo "Enter the project name:"
-project=$(read_input "" 50)
-
 # Ask the user to enter the field
-echo "Enter the field:"
+echo "Enter the field(can be empty):"
 field=$(read_input "" 50)
 
 # Ask the user to enter the main_message
 echo "Enter the main message:"
 main_message=$(read_input "" 200)
 
-# Ask the user to enter the description
-echo "Enter DESCRIPTION:"
-description=$(read_input "" 200)
-
-# Ask the user to enter the impact_project
-echo "Enter IMPACT PROJECTS:"
-impact_project=$(read_input "" 200)
-
-# Ask the user to enter the test
-echo "Enter TEST:"
-test=$(read_input "" 200)
-
 # Generate the Git commit message
-commit_message="[$commit_type] $project: $field: $main_message
-
-[DESCRIPTION]
-$description
-
-[IMPACT PROJECTS]
-$impact_project
-
-[TEST]
-$test"
+if [ -n "$field" ]; then
+  commit_message="$commit_type($field): $main_message"
+else
+  commit_message="$commit_type: $main_message"
+fi
 
 # Display the Git commit message with the commit type label
 echo "========================================"
