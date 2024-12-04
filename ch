@@ -71,15 +71,23 @@ esac
 echo "Enter the field(can be empty):"
 field=$(read_input "" 50)
 
-# Ask the user to enter the main_message
-echo "Enter the main message:"
-main_message=$(read_input "" 200)
+# Ask the user to enter the title_message
+echo "Enter the commit title :"
+title_message=$(read_input "" 200)
+
+# Ask the user to enter the commit body
+echo "Enter the commit body message:"
+body_message=$(read_input "" 200)
 
 # Generate the Git commit message
 if [ -n "$field" ]; then
-  commit_message="$commit_type($field): $main_message"
+  commit_message="$commit_type($field): $title_message
+
+$body_message"
 else
-  commit_message="$commit_type: $main_message"
+  commit_message="$commit_type: $title_message
+
+$body_message"
 fi
 
 # Display the Git commit message with the commit type label
